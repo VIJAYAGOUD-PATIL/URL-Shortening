@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="short.jpg">
+    <title>History</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 400px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #666;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        /* Button style */
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        /* Click count style */
+        #clickCount {
+            text-align: center;
+            color: #666;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>History</h1>
+        <label for="longUrl">Long URL</label>
+        <input type="text" id="longUrl" placeholder="Enter URL To Shorten">
+        <label for="shortUrl">Short URL</label>
+        <div>
+            <textarea id="shortUrl" rows="3" readonly></textarea>
+            <!-- Click count display -->
+            <span id="clickCount"></span>
+        </div>
+        <button class="btn" id="goToShortUrl">Go to URL</button>
+        <button class="btn" onclick="clearStorage()">Clear Storage</button>
+    </div>
+
+    <script>
+        // Retrieve click count from session storage on page load
+        let clickCount = parseInt(sessionStorage.getItem('clickCount')) || 0;
+
+        // Populate input fields with values from session storage
+        window.onload = function() {
+            document.getElementById('longUrl').value = sessionStorage.getItem('longUrl') || '';
+            document.getElementById('shortUrl').value = sessionStorage.getItem('shortUrl') || '';
+            updateClickCount(); // Update click count display on page load
+        };
+
+        // Function to clear session storage
+        function clearStorage() {
+            sessionStorage.removeItem('longUrl');
+            sessionStorage.removeItem('shortUrl');
+            sessionStorage.removeItem('clickCount');
+            document.getElementById('longUrl').value = '';
+            document.getElementById('shortUrl').value = '';
+            clickCount = 0; // Reset click count variable
+            updateClickCount(); // Update click count display
+        }
+
+        // Event listener for input changes
+        document.getElementById('longUrl').addEventListener('input', updateStorage);
+        document.getElementById('shortUrl').addEventListener('input', updateStorage);
+
+        // Function to update session storage when input changes
+        function updateStorage() {
+            const longUrl = document.getElementById('longUrl').value;
+            const shortUrl = document.getElementById('shortUrl').value;
+            sessionStorage.setItem('longUrl', longUrl);
+            sessionStorage.setItem('shortUrl', shortUrl);
+        }
+
+        // Event listener for clicking "Go to URL" button
+        document.getElementById('goToShortUrl').addEventListener('click', function() {
+            const longUrl = document.getElementById('longUrl').value.trim();
+            if (longUrl) {
+                clickCount++; // Increment click count
+                sessionStorage.setItem('clickCount', clickCount); // Store click count in session storage
+                updateClickCount(); // Update click count display
+                window.location.href = longUrl;
+            }
+        });
+
+        // Function to update click count display
+        function updateClickCount() {
+            document.getElementById('clickCount').textContent = 'Number of Clicks: ' + clickCount;
+        }
+    </script>
+</body>
+</html>

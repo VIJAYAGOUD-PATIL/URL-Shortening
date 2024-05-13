@@ -1,0 +1,164 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+    color: white;
+}
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: rgb(82, 164, 241);
+}
+
+.wrapper{
+    background: black;
+    border-radius: 10px;
+    padding: 18px 25px;
+    border:1.5px solid white;
+    text-align: center;
+    min-width: 400px;
+}
+
+h1{
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: aliceblue;
+}
+
+label{
+    text-align: left;
+    font-size: 15px;
+    font-weight: 500;
+    margin: 10px 0;
+    display: block;
+}
+
+input,textarea{
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 5px;
+    font-size: 14px;
+    color: aliceblue;
+    font-weight: 500;
+}
+
+input::placeholder{
+    color: white;
+}
+
+.buttons{
+    display: flex;
+    gap:15px;
+
+}
+
+button{
+    width: 100%;
+    color: azure;
+    border: 2px solid wheat;
+    border-radius: 5px;
+    padding: 8px;
+    background-color: transparent;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+
+
+
+button::hover{
+    background-color: wheat;
+    color: #000;
+}
+
+
+.buttons button:hover i{
+    color: #000;
+}
+
+
+textarea{
+    resize: none;
+}
+
+small{
+    font-size: 10px;
+    font-weight: 500;
+}
+
+
+/* custom.css */
+
+/* custom.css */
+
+/* Style for the history button */
+/* custom.css */
+
+/* Style for the history button */
+.history-btn {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: #0a0a0a;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    z-index: 1000;
+    width: 80px; /* Adjust width as needed */
+}
+
+
+
+/* Hover effect for the history button */
+.history-btn:hover {
+    background-color: #f43434;
+}
+
+/* style.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.history-list {
+    margin-top: 20px;
+}
+
+.history-entry {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.original-url, .short-url, .clicks {
+    margin-bottom: 5px;
+}
+
+.short-url a {
+    color: blue;
+    text-decoration: none;
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Url Shortener</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="urlshot.png">
+</head>
+<body>
+<div class="wrapper">
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
+    <lord-icon
+        src="https://cdn.lordicon.com/cbigqefp.json"
+        trigger="hover"
+        style="width:100px;height:100px">
+    </lord-icon>
+    <h1>Shorten A Long URL</h1>
+    <input type="text" id="longUrl" placeholder="Enter URL To Shorten">
+    <div class="buttons">
+        <button id="reload-btn">
+            <i class='bx bx-refresh'></i>Refresh
+        </button>
+        <button id="short-btn">
+            <i class="bx bx-link"></i>Shorten URL
+        </button>
+    </div>
+    <label for="shortUrl">Shorten URL</label>
+    <textarea id="shortUrl" rows="3"></textarea>
+</div>
+
+
+<!-- History button -->
+<a href="history.html" id="history-btn" class="history-btn"><center>History</center></a>
+
+<script>
+    // Event listener for clicking on the history button
+    document.getElementById('history-btn').addEventListener('click', function() {
+        // Store input values in session storage
+        sessionStorage.setItem('longUrl', document.getElementById('longUrl').value);
+        sessionStorage.setItem('shortUrl', document.getElementById('shortUrl').value);
+    });
+</script>
+
+
+<script src="urlShortener.js"></script>
+
+<script>
+    // Event listener for clicking on the short URL
+    document.getElementById('shortUrl').addEventListener('click', function() {
+        const shortUrl = this.value.trim();
+        if (shortUrl) {
+            window.location.href = shortUrl;
+        }
+    });
+
+    // Event listener for the Refresh button
+    document.getElementById('reload-btn').addEventListener('click', function() {
+        refreshPage();
+    });
+
+    // Function to handle refreshing the page
+    function refreshPage() {
+        window.location.reload();
+    }
+
+    // Sample data for demonstration
+    const historyData = [
+        { originalUrl: 'https://example.com/original1', shortUrl: 'https://short.url/abc', clicks: 5 },
+        { originalUrl: 'https://example.com/original2', shortUrl: 'https://short.url/def', clicks: 10 },
+        // Add more entries as needed
+    ];
+
+    // Save history data to local storage
+    localStorage.setItem('historyData', JSON.stringify(historyData));
+</script>
+
+</body>
+</html>
